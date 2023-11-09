@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="assets/style/style.css">
+    <script src="https://kit.fontawesome.com/2689af2437.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="nav">
+        <span class="logo"><a href="#" class="active home">sam</a></span>
+        <ul>
+            <li><a href="#about" class="abt">about</a></li>
+            <li><a href="#work" class="wrk">my work</a></li>
+        </ul>
+        <a href="#contact" class="contact">contact</a>
+    </nav>
+    <div class="hero">
+        <div class="hero_content">
+            <div class="circles">
+                <div class="textz">
+                    <p><b>Samuel Ochaka </b>| Full stack dev | Digital artist</p>
+                </div>
+            <div class="image_box">
+                <div class="image">
+                    <img src="/imageedit_1_2008621683.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div id="about"></div>
+    <div class="about">
+        <div class="about_text" >
+            <div class="watermark"><h2>ABOUT</h2></div>
+            <p class="h">About me</p>
+            <p class="available"><span class="circle"></span> &nbsp;Available for work</p>
+            <p class="sam">samuel Ochaka - web developer</p>
+            <p class="text">Passionate designer, able to build an all encompassing design system for widespread use, enuring  unwavering consistency in product development</p>
+            <a href="#contact" class="connect">Connect with me &#866;</a>
+        </div>
+        <div class="skills">
+            <div class="skill">
+                <h3><i class="fa-brands fa-html5" style="color: #af0d0d;"></i>UI/UX design</h3>
+                <p class="small">html, css, js, react</p>
+                <p>responsive and eye catching user interfaces that stay true to your brand</p>
+                
+            </div>
+            <div class="skill">
+                <h3>Backend development</h3>
+                <p class="small">node, django, php, asp</p>
+
+                <p>Web apps built with scalability in mind to match your future growth propects and allow you focus solely on operation</p>
+                
+            </div>
+            <div class="skill">
+                <h3>Digital art</h3>
+                <p class="small">3D & 2D art and animation</p>
+                <p>Digital art for online marketing, branding and game developme</p>
+        
+            </div>
+        </div>
+    </div>
+    <div class="work" id="work">
+        <p>projects</p>
+        <h1>Some of <span class="red">My</span> work</h1>
+        <div class="gall_box">
+            <div class="gall">
+                <!-- <img src="/Sam PP.jpg" alt=""> -->
+                <img src="/Screenshot 2023-10-02 at 20.26.50.png" alt="">
+                <img src="/Screenshot 2023-11-08 at 13.51.14.png" alt="">
+                <img src="/Screenshot 2023-11-08 at 13.59.33.png" alt="">
+                <img src="/Screenshot 2023-11-08 at 13.59.51.png" alt="">
+                <img src="/Screenshot 2023-11-08 at 14.00.11.png" alt="">
+                <img src="/Screenshot 2023-11-09 at 04.11.26.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="contacts" id="contact">
+        <a href="#"><i class="fa-brands fa-linkedin fa-2x link" style="color: #0077b5;"></i></a>
+        <a href="#"><i class="fa-brands fa-whatsapp fa-2x" style="color: #075e54;"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram fa-2x" style="color: #d62976;"></i></a>
+    </div>
+    <div class="banner">
+        <h1>Full stack developer</h1>
+    </div>
+    <div class="banner2">
+        <h1>Digital artist</h1>
+    </div>
+    <script>
+        
+        initialWidth = 100
+        finalWidth = 70
+        var newScale = 1
+        var innerHeight = window.innerHeight
+        var windowHeight = parseInt(innerHeight)
+        const about = document.querySelector(".about_text")
+        const hero = document.querySelector(".hero")
+        const nav = document.querySelector(".nav")
+        const text = document.querySelector('.textz')
+        const work = document.querySelector(".work")
+        const contact = document.querySelector(".contacts")
+        text.innerHTML = text.innerText.split('').map((char, i) => `<span style="transform:rotate(${(i * 6)-60}deg)">${char}</span>`).join('')
+        
+        
+
+        window.addEventListener('scroll', () => {
+        var position = about.getBoundingClientRect().top
+        var contactPosition = contact.getBoundingClientRect().bottom 
+        var workPosition = work.getBoundingClientRect().top
+            // console.log(about.getBoundingClientRect())
+            // console.log(`innerHeight: ${windowHeight}`)
+            // console.log(`position: ${position}`)
+        var isAbove = position < windowHeight
+        // console.log(isAbove)
+
+            const scrollHeight = window.scrollY
+            
+            // console.log(about.getBoundingClientRect())
+            // console.log(scrollHeight)
+            // console.log(position)
+            console.log(windowHeight)
+            console.log(contactPosition)
+
+            if (scrollHeight < 100){
+                if(scrollHeight == 0 || scrollHeight == 1){
+                    newScale = 1;
+                }
+                else {
+                    newScale = 1 - 0.005*scrollHeight
+                    // console.log("scroll height: "+ scrollHeight)
+                    // console.log(`scale: ${newScale}`)
+                }
+                if(scrollHeight > 50){
+                    document.querySelector(".about").style.zIndex = 1
+                }
+                else {
+                    document.querySelector(".text").style.opacity = 1
+                    document.querySelector(".about").style.zIndex = -1
+                }
+                hero.style.transform = `scale(${newScale})`
+            }
+            opacity = .8 - 0.002*scrollHeight
+            // document.querySelector(".text").style.opacity = opacity
+
+            if (isAbove){
+                document.querySelector(".about_text").classList.add("active")
+            }else{
+                document.querySelector(".about_text").classList.remove("active")
+            }
+
+            // console.log(`diff: ${hero.getBoundingClientRect().bottom - document.querySelector(".hero_content").getBoundingClientRect().bottom}`)
+            if(document.querySelector(".hero").getBoundingClientRect().bottom <= -(hero.getBoundingClientRect().bottom - document.querySelector(".hero").getBoundingClientRect().bottom)){
+                // console.log(document.querySelector(".hero").getBoundingClientRect().bottom)
+                console.log("arrived")
+                document.querySelector(".about").style.position = "sticky"
+                document.querySelector(".about").style.top = 0
+                document.querySelector(".about").style.width = "100%"
+                document.querySelector(".about").style.zIndex = -1
+                nav.classList.remove("black")
+                nav.classList.add("white")
+                document.querySelector(".active").classList.remove("active")
+                document.querySelector(".abt").classList.add("active")
+            }
+            if(document.querySelector(".hero").getBoundingClientRect().bottom >= -(hero.getBoundingClientRect().bottom - document.querySelector(".hero").getBoundingClientRect().bottom)){
+                document.querySelector(".about").style.position = "relative"
+                nav.classList.remove("white")
+                nav.classList.remove("black")
+                document.querySelector(".active").classList.remove("active")
+                document.querySelector(".home").classList.add("active")
+            }
+            var isLess = workPosition < parseInt (windowHeight)-300
+            if (workPosition < windowHeight - 400){
+                console.log("work")
+                document.querySelector(".active").classList.remove("active")
+                document.querySelector(".wrk").classList.add("active")
+            }
+            if(workPosition <= 0){
+                nav.classList.remove("white")
+                nav.classList.add("black")
+            }
+            // console.log(document.querySelector(".about").getBoundingClientRect().top)
+            console.log(contactPosition +":"+ (windowHeight))
+            console.log(isLess)
+             if(contactPosition < windowHeight + 100){
+                document.querySelector(".active").classList.remove("active")
+                document.querySelector(".contact").classList.add("active")
+             }
+        })
+    </script>
+</body>
+</html>
