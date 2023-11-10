@@ -162,11 +162,11 @@ body{
 .image_box {
     padding: 10px;
     border: 15px solid #ec4155;
-    padding: 5em;
+    padding: 2em;
     border-radius: 50%;
 }
 .image {
-    width:50vh;height: 50vh;
+    width:30vh;height: 30vh;
     margin: 20px;
     /* background: radial-gradient(rgba(255, 0, 0, .5), rgba(0, 0, 0, 0.00)); */
     border-radius: 50%;
